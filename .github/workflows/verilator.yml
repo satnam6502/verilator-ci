@@ -20,8 +20,15 @@ jobs:
         fail-fast: false
     steps:
       - run: |
+             mkdir -p "$HOME/.ghcup/bin"
+             curl -sL https://downloads.haskell.org/ghcup/0.1.20.0/x86_64-linux-ghcup-0.1.20.0 > "$HOME/.ghcup/bin/ghcup"
+             chmod a+x "$HOME/.ghcup/bin/ghcup"
+             "$HOME/.ghcup/bin/ghcup" install ghc "$HCVER" || (cat "$HOME"/.ghcup/logs/*.* && false)
+             "$HOME/.ghcup/bin/ghcup" install cabal 3.10.2.0 || (cat "$HOME"/.ghcup/logs/*.* && false)
              sudo apt-get update
              sudo apt-get install -y verilator
              uname -a
              lsb_release -a
              verilator -version
+             ghc --version
+    
