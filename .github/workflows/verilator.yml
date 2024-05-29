@@ -4,6 +4,20 @@ jobs:
   linux:
     name: Test Verilator
     runs-on: ubuntu-24.04
+    strategy:
+        matrix:
+          include:
+            - compiler: ghc-9.8.2
+              compilerKind: ghc
+              compilerVersion: 9.8.2
+              setup-method: ghcup
+              allow-failure: false
+            - compiler: ghc-9.4.8
+              compilerKind: ghc
+              compilerVersion: 9.4.8
+              setup-method: ghcup
+              allow-failure: false
+        fail-fast: false
     steps:
       - run: |
              sudo apt-get update
