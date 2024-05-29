@@ -1,0 +1,11 @@
+name: Verilator-CI
+on: [push]
+jobs:
+  Test-Verilator:
+    runs-on: ubuntu-24.04
+    steps:
+      - run: |
+             apt-get install -y verilator
+             uname -a
+             lsb_release -a
+             verilator -version
