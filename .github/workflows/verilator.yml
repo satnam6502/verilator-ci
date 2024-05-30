@@ -31,7 +31,7 @@ jobs:
              lsb_release -a
              verilator -version
              ghc --version
-             git clone https://github.com/satnam6502/lava.git
+             git clone https://github.com/satnam6502/xilinx-lava.git
              cabal test
 
     
