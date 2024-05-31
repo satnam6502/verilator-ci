@@ -29,9 +29,7 @@ jobs:
         with:
           path: source
       - run: |
-          pwd
-          find . -name hello.cpp
-          cd $GITHUB_WORKSPACE/unpacked
+          cd source
           ls
           g++ hello.cpp
           ./a.out
