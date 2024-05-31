@@ -40,11 +40,6 @@ jobs:
              verilator -version
              which ghc
              ghc --version
-             echo "Contents of ghcup dir:"
-             ls $HOME/.ghcup
-             echo "Contents of ~/.cabal"
-             ls ~/.cabal
-             cat ~/.cabal/config
              git clone https://github.com/satnam6502/xilinx-lava.git
              cd xilinx-lava
       - name: save ghc
@@ -62,10 +57,10 @@ jobs:
       - run: |
              pwd
              echo $HOME
-             cabal update
+             cabal v2-update
              cd xilinx-lava
-             cabal test
-             verilator +1800-2017ext+sv verilator.vlt --binary --trace -Wall -cc --build --clk clk --top-module nandgate_sim nandgate.sv nandgate_sim.sv
+             cabal v2-test
+             verilator +1800-2017ext+sv verilator.vlt --binary --trace -Wall -cc --clk clk --top-module nandgate_sim nandgate.sv nandgate_sim.sv
              ls -l obj_dir/Vnandgate_sim
              # obj_dir/Vnandgate_sim +trace
              cd obj_dir
