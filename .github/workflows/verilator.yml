@@ -41,6 +41,7 @@ jobs:
                path: ~/.cabal/store
                restore-keys: ${{ runner.os }}-${{ matrix.compiler }}-
       - run: |
+             cd xilinx-lava
              cabal test
              verilator +1800-2017ext+sv verilator.vlt --binary --trace -Wall -cc --build --clk clk --top-module nandgate_sim nandgate.sv nandgate_sim.sv
              ls -l obj_dir/Vnandgate_sim
