@@ -26,12 +26,11 @@ jobs:
                path: $HOME/.ghcup/bin
                restore-keys: ${{ runner.os }}-${{ matrix.compiler }}-
       - run: |
-             ghcup upgrade
              mkdir -p "$HOME/.ghcup/bin"
              sudo chmod a+x "$HOME/.ghcup/bin/ghcup"
-             "$HOME/.ghcup/bin/ghcup" install ghc ${{ matrix.compilerVersion }} || (cat "$HOME"/.ghcup/logs/*.* && false)
-             ghcup set {{ matrix.compilerVersion }}
-             "$HOME/.ghcup/bin/ghcup" install cabal 3.10.3.0 || (cat "$HOME"/.ghcup/logs/*.* && false)
+             ghcup install ghc ${{ matrix.compilerVersion }}
+             ghcup set ${{ matrix.compilerVersion }}
+             ghcup install cabal 3.10.3.0
              sudo apt-get update
              sudo apt-get install -y verilator
              uname -a
