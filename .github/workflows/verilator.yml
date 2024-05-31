@@ -30,7 +30,6 @@ jobs:
              export PATH=$HOME/.ghcup/bin:$PATH
              mkdir -p "$HOME/.ghcup/bin"
              sudo chmod a+x "$HOME/.ghcup/bin/ghcup"
-             ghcup upgrade
              ghcup install ghc ${{ matrix.compilerVersion }}
              ghcup set ghc ${{ matrix.compilerVersion }}
              ghcup install cabal 3.10.3.0
@@ -41,7 +40,11 @@ jobs:
              verilator -version
              which ghc
              ghc --version
+             echo "Contents of ghcup dir:"
              ls $HOME/.ghcup
+             echo "Contents of ~/.cabal"
+             ls ~/.cabal
+             cat ~/.cabal/config
              git clone https://github.com/satnam6502/xilinx-lava.git
              cd xilinx-lava
       - name: save ghc
@@ -65,6 +68,8 @@ jobs:
              verilator +1800-2017ext+sv verilator.vlt --binary --trace -Wall -cc --build --clk clk --top-module nandgate_sim nandgate.sv nandgate_sim.sv
              ls -l obj_dir/Vnandgate_sim
              # obj_dir/Vnandgate_sim +trace
+             cd obj_dir
+             ./Vnandgate_sim +trace
       - name: save cabal cache
         uses: actions/cache/save@v4
         if: always()
