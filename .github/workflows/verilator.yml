@@ -23,7 +23,7 @@ jobs:
         uses: actions/cache/restore@v4
         with:
                key: ${{ runner.os }}-${{ matrix.compiler }}-${{ github.sha }}
-               path: $HOME/.ghcup/bin
+               path: ~/.ghcup/bin
                restore-keys: ${{ runner.os }}-${{ matrix.compiler }}-
       - run: |
              export GHCUP_INSTALL_BASE_PREFIX=$HOME
@@ -48,12 +48,12 @@ jobs:
         if: always()
         with:
                key: ${{ runner.os }}-${{ matrix.compiler }}-${{ github.sha }}
-               path: $HOME/.ghcup/bin         
+               path: ~/.ghcup/bin         
       - name: restore cabal cache
         uses: actions/cache/restore@v4
         with:
                 key: ${{ runner.os }}-${{ matrix.compiler }}-${{ github.sha }}
-                path: $HOME/.cabal/store
+                path: ~/.cabal/store
                 restore-keys: ${{ runner.os }}-${{ matrix.compiler }}-
       - run: |
              pwd
@@ -69,6 +69,6 @@ jobs:
         if: always()
         with:
                key: ${{ runner.os }}-${{ matrix.compiler }}-${{ github.sha }}
-               path: $HOME/.cabal/store
+               path: ~/.cabal/store
 
     
