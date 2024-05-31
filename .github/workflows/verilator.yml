@@ -24,6 +24,14 @@ jobs:
               allow-failure: false
         fail-fast: false
     steps:
+      - name: checkout
+        uses: actions/checkout@v4
+        with:
+          path: source
+      - run: |
+          pwd
+          ls
+          g++ hello.cpp
       - name: restore ghc
         uses: actions/cache/restore@v4
         with:
