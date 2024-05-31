@@ -81,6 +81,7 @@ jobs:
              g++ hello.cpp
              ./a.out
              cd obj_dir
+             ./Vnandgate_sim --help
              ./Vnandgate_sim +trace
       - name: save cabal cache
         uses: actions/cache/save@v4
