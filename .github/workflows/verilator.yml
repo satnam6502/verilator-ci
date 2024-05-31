@@ -30,13 +30,16 @@ jobs:
              curl -sL https://downloads.haskell.org/ghcup/0.1.20.0/x86_64-linux-ghcup-0.1.20.0 > "$HOME/.ghcup/bin/ghcup"
              sudo chmod a+x "$HOME/.ghcup/bin/ghcup"
              "$HOME/.ghcup/bin/ghcup" install ghc ${{ matrix.compilerVersion }} || (cat "$HOME"/.ghcup/logs/*.* && false)
+             ghcup set {{ matrix.compilerVersion }}
              "$HOME/.ghcup/bin/ghcup" install cabal 3.10.3.0 || (cat "$HOME"/.ghcup/logs/*.* && false)
              sudo apt-get update
              sudo apt-get install -y verilator
              uname -a
              lsb_release -a
              verilator -version
+             which ghc
              ghc --version
+             ls $HOME/.ghcup
              git clone https://github.com/satnam6502/xilinx-lava.git
              cd xilinx-lava
       - name: save ghc
