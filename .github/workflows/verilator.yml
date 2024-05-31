@@ -24,7 +24,7 @@ jobs:
              curl -sL https://downloads.haskell.org/ghcup/0.1.20.0/x86_64-linux-ghcup-0.1.20.0 > "$HOME/.ghcup/bin/ghcup"
              sudo chmod a+x "$HOME/.ghcup/bin/ghcup"
              "$HOME/.ghcup/bin/ghcup" install ghc ${{ matrix.compilerVersion }} || (cat "$HOME"/.ghcup/logs/*.* && false)
-             "$HOME/.ghcup/bin/ghcup" install cabal 3.10.2.0 || (cat "$HOME"/.ghcup/logs/*.* && false)
+             "$HOME/.ghcup/bin/ghcup" install cabal 3.10.3.0 || (cat "$HOME"/.ghcup/logs/*.* && false)
              sudo apt-get update
              sudo apt-get install -y verilator
              uname -a
@@ -33,6 +33,7 @@ jobs:
              ghc --version
              git clone https://github.com/satnam6502/xilinx-lava.git
              cd xilinx-lava
+             cabal update
              cabal test
              verilator +1800-2017ext+sv verilator.vlt --binary --trace -Wall -cc --build --clk clk --top-module nandgate_sim nandgate.sv nandgate_sim.sv
              obj_dir/Vnandgate_sim +trace
