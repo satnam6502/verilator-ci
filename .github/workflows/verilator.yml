@@ -1,5 +1,10 @@
 name: Verilator-CI
 on: [push]
+
+defaults:
+    run:
+      shell: bash
+
 jobs:
   linux:
     name: Test Verilator
