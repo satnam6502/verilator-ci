@@ -26,8 +26,8 @@ jobs:
                path: $HOME/.ghcup/bin
                restore-keys: ${{ runner.os }}-${{ matrix.compiler }}-
       - run: |
+             ghcup upgrade
              mkdir -p "$HOME/.ghcup/bin"
-             curl -sL https://downloads.haskell.org/ghcup/0.1.20.0/x86_64-linux-ghcup-0.1.20.0 > "$HOME/.ghcup/bin/ghcup"
              sudo chmod a+x "$HOME/.ghcup/bin/ghcup"
              "$HOME/.ghcup/bin/ghcup" install ghc ${{ matrix.compilerVersion }} || (cat "$HOME"/.ghcup/logs/*.* && false)
              ghcup set {{ matrix.compilerVersion }}
