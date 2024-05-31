@@ -26,6 +26,8 @@ jobs:
                path: $HOME/.ghcup/bin
                restore-keys: ${{ runner.os }}-${{ matrix.compiler }}-
       - run: |
+             export GHCUP_INSTALL_BASE_PREFIX=$HOME
+             export PATH=$HOME/.ghcup/bin:$PATH
              mkdir -p "$HOME/.ghcup/bin"
              sudo chmod a+x "$HOME/.ghcup/bin/ghcup"
              ghcup install ghc ${{ matrix.compilerVersion }}
