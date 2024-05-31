@@ -19,6 +19,12 @@ jobs:
               allow-failure: false
         fail-fast: false
     steps:
+      - name: restore ghc
+        uses: actions/cache/restore@v4
+        with:
+               key: ${{ runner.os }}-${{ matrix.compiler }}-${{ github.sha }}
+               path: ~/.ghcup/bin
+               restore-keys: ${{ runner.os }}-${{ matrix.compiler }}-
       - run: |
              mkdir -p "$HOME/.ghcup/bin"
              curl -sL https://downloads.haskell.org/ghcup/0.1.20.0/x86_64-linux-ghcup-0.1.20.0 > "$HOME/.ghcup/bin/ghcup"
@@ -33,6 +39,12 @@ jobs:
              ghc --version
              git clone https://github.com/satnam6502/xilinx-lava.git
              cd xilinx-lava
+      - name: save ghc
+        uses: actions/cache/save@v4
+        with:
+                    key: ${{ runner.os }}-${{ matrix.compiler }}-${{ github.sha }}
+                    path: ~/.ghcup/bin
+                    restore-keys: ${{ runner.os }}-${{ matrix.compiler }}-             
       - name: restore cache
         uses: actions/cache/restore@v4
         with:
@@ -40,6 +52,8 @@ jobs:
                path: ~/.cabal/store
                restore-keys: ${{ runner.os }}-${{ matrix.compiler }}-
       - run: |
+             pwd
+             echo $HOME
              cabal update
              cd xilinx-lava
              cabal test
