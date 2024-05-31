@@ -30,8 +30,10 @@ jobs:
           path: source
       - run: |
           pwd
+          cd $GITHUB_WORKSPACE
           ls
           g++ hello.cpp
+          ./a.out
       - name: restore ghc
         uses: actions/cache/restore@v4
         with:
