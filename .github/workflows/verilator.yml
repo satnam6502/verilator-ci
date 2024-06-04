@@ -85,7 +85,6 @@ jobs:
              ./a.out
              cd obj_dir
              file Vnandgate_sim
-             strace ./Vnandgate_sim --help
              strace ./Vnandgate_sim +trace
       - name: save cabal cache
         uses: actions/cache/save@v4
